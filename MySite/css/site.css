@@ -49,3 +49,39 @@
     height: 50vh;
     margin: 15px 0;
 }
+
+.item-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 15px;
+}
+
+.list-group-style {
+    font-family: 'Niconne', cursive;
+    color: #494949;
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+.text-ellipsis {
+    display: block; /* Fallback for non-webkit */
+    display: -webkit-box;
+    max-width: 100%;
+    height: 67.2px; /* Fallback for non-webkit */
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.4;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: justify;
+}
+
+.hr-sm {
+    margin: 10px 15px;
+}
+
+.item-description{
+}
