@@ -1,3 +1,51 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 65px;
+    padding-bottom: 85px;
+    color: #494949;
+    font: 400 16px/21px "Roboto",sans-serif;
+    -webkit-text-size-adjust: none;
+    background: url("https://livedemo00.template-help.com/wt_57971/images/body_bg.jpg") repeat;
+}
+
+.align-middle {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.logo {
+    font-family: 'Great Vibes', cursive;
+    color: #494949;
+    font-size: 64px;
+    font-style: italic;
+    margin: 64px 0 32px 0;
+}
+
+.list-style {
+    font-family: 'Niconne', cursive;
+    color: #494949;
+    font-size: 30px;
+}
+
+.container-background {
+    background-color: #FFF;
+}
+
+#head-menu li {
+    margin: 0 5%;
+}
+
+.social-style a {
+    color: #000;
+}
+
+.bg-image {
+    background-image: url("http://bookshelf.themerex.net/wp-content/uploads/2015/04/bigopenbook.jpg");
+    background-color: #666666;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    display: block;
+    height: 50vh;
+    margin: 15px 0;
 }

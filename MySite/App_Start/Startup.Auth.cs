@@ -54,9 +54,9 @@ namespace MySite
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            app.UseFacebookAuthentication(
-               appId: "1481655535225355",
-               appSecret: "d9ee1bddbb87cf7964aa1ea5a411eab1");
+            //app.UseFacebookAuthentication(
+            //   appId: "1481655535225355",
+            //   appSecret: "d9ee1bddbb87cf7964aa1ea5a411eab1");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

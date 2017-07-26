@@ -5,54 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Niconne&amp;subset=latin-ext" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
 <body>
-    <script>
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '1481655535225355',
-                cookie: true,
-                xfbml: true,
-                version: 'v2.8'
-            });
-            FB.AppEvents.logPageView();
-        };
+    @*<script>
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '1481655535225355',
+                    cookie: true,
+                    xfbml: true,
+                    version: 'v2.8'
+                });
+                FB.AppEvents.logPageView();
+            };
 
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>Test AppHabor</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) { return; }
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>*@
+    <div class="container container-background body-content">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="logo text-center">Harris HQ</p>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <ul id="head-menu" class="list-inline text-center list-style">
+                    <li>Home</li>
+                    <li>Books</li>
+                    <li>Videos</li>
+                    <li>Photos</li>
+                    <li>Biography</li>
+                </ul>
+            </div>            
+        </div>        
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-inline social-style">
+                        <li><a class="fa fa-sm fa-twitter" href="#"></a></li>
+                        <li><a class="fa fa-sm fa-facebook" href="#"></a></li>
+                        <li><a class="fa fa-sm fa-google-plus " href="#"></a></li>
+                        <li><a class="fa fa-sm fa-rss" href="#"></a></li>
+                        <li><a class="fa fa-sm fa-pinterest" href="#"></a></li>
+                    </ul>
+                </div>                
+            </div>
         </footer>
     </div>
 
