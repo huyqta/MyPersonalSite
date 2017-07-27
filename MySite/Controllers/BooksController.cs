@@ -8,6 +8,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MySite.Models;
+using Google.Apis.Drive.v3;
+using Google.Apis.Drive.v3.Data;
 
 namespace MySite.Controllers
 {
@@ -49,6 +51,7 @@ namespace MySite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Title,Author,Publisher,Description,UrlRead,UrlDownload,UrlImage,UrlThumbnail")] Book book)
         {
+            UploadFileToGoogleDrive();
             if (ModelState.IsValid)
             {
                 book.Id = Guid.NewGuid();
@@ -115,6 +118,28 @@ namespace MySite.Controllers
             db.DsBooks.Remove(book);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        public void UploadFileToGoogleDrive()
+        {
+            var fileName = @"C:\test\111.jpg";
+            Google.Apis.Services.BaseClientService.Initializer initializer = new Google.Apis.Services.BaseClientService.Initializer();
+            
+            DriveService driveService = new DriveService();
+            
+            var fileMetadata = new File()
+            {
+                Name = fileName
+            };
+            FilesResource.CreateMediaUpload request;
+            using (var stream = new System.IO.FileStream(fileName, System.IO.FileMode.Open))
+            {
+                request = driveService.Files.Create(fileMetadata, stream, "image/jpeg");
+                request.Fields = "id";
+                request.Upload();
+            }
+
+            var file = request.ResponseBody;
         }
 
         protected override void Dispose(bool disposing)
