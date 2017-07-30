@@ -13,7 +13,7 @@ using Google.Apis.Drive.v3.Data;
 
 namespace MySite.Controllers
 {
-    public class BooksController : Controller
+    public class BooksController : BaseController
     {
         private Books db = new Books();
 
@@ -51,7 +51,8 @@ namespace MySite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Title,Author,Publisher,Description,UrlRead,UrlDownload,UrlImage,UrlThumbnail")] Book book)
         {
-            UploadFileToGoogleDrive();
+            //WebConsole.GoogleDriverConsole w = new WebConsole.GoogleDriverConsole();
+            //w.UploadFile();
             if (ModelState.IsValid)
             {
                 book.Id = Guid.NewGuid();
