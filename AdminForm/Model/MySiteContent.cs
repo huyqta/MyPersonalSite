@@ -12,7 +12,9 @@ namespace AdminForm.Model
         {
         }
 
+        public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

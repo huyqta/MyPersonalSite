@@ -93,7 +93,9 @@
     </Compile>
     <Compile Include="Helpers\GlobalHelpers.cs" />
     <Compile Include="Helpers\GoogleDriverConsole.cs" />
+    <Compile Include="Model\Article.cs" />
     <Compile Include="Model\Book.cs" />
+    <Compile Include="Model\Category.cs" />
     <Compile Include="Model\MySiteContent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
