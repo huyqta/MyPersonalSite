@@ -20,6 +20,7 @@ namespace AdminForm
         {
             InitializeComponent();
             LoadListBooks();
+            LoadCategories();
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -66,11 +67,37 @@ namespace AdminForm
         private void LoadCategories()
         {
             treeCategories.Nodes.Clear();
-            foreach (var cat in context.Categories.ToList())
+            var rootNode = Guid.Parse("00000000-0000-0000-0000-000000000000");
+            var listRoot = context.Categories.Where(c => c.ParentId == rootNode).ToList();
+            foreach(var cat in listRoot)
             {
-                treeCategories.Nodes.Add(new TreeNode() { Name = cat.Id.ToString(), Text = cat.Name });
+                TreeNode node = new TreeNode() { Text = cat.Name, Name=cat.Id.ToString() };
+                treeCategories.Nodes.Add(node);
+            }
+            foreach (TreeNode node in treeCategories.Nodes)
+            {
+                Guid nodeId = Guid.Parse(node.Name.ToString());
+                List<Category> categories = context.Categories.Where(c => c.ParentId == nodeId).ToList();
+                if (categories.Count > 0)
+                {
+                    AddChildNodes(categories, node);
+                }
             }
             
+        }
+
+        private void AddChildNodes(List<Category> nodes, TreeNode node)
+        {
+            foreach (Category cat in nodes)
+            {
+                TreeNode childNode = new TreeNode() { Text = cat.Name, Name = cat.Id.ToString() };
+                node.Nodes.Add(childNode);
+                var childNodes = context.Categories.Where(c => c.ParentId == cat.Id).ToList();
+                if (childNodes.Count > 0)
+                {
+                    AddChildNodes(childNodes, childNode);
+                }
+            }
         }
 
         private void btnUpload_Click(object sender, EventArgs e)
@@ -88,7 +115,8 @@ namespace AdminForm
 
         private void btnAddCategory_Click(object sender, EventArgs e)
         {
-            Guid parentId = treeCategories.SelectedNode != null ? Guid.Parse(treeCategories.SelectedNode.Name) : Guid.Parse("00000000-0000-0000-0000-000000000000");
+            var parentKey = context.Categories.Where(c => c.Name == txtParentCategory.Text).FirstOrDefault().Id;
+            Guid parentId = !string.IsNullOrEmpty(txtParentCategory.Text) ? Guid.Parse(treeCategories.Nodes.Find(parentKey.ToString(), true).FirstOrDefault().Name) : Guid.Parse("00000000-0000-0000-0000-000000000000");
             Category cat = new Category();
             cat.Id = Guid.NewGuid();
             cat.Name = txtCategoryName.Text;
@@ -97,6 +125,16 @@ namespace AdminForm
             context.Categories.Add(cat);
             context.SaveChanges();
             LoadCategories();
+        }
+
+        private void treeCategories_Click(object sender, EventArgs e)
+        {
+            //txtParentCategory.Text = treeCategories.SelectedNode.Text;
+        }
+
+        private void treeCategories_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            txtParentCategory.Text = treeCategories.SelectedNode.Text;
         }
     }
 }
