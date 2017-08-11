@@ -33,5 +33,7 @@ namespace MySite.Models
 
         [StringLength(500)]
         public string UrlThumbnail { get; set; }
+
+        public int? Category { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySite.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,10 +7,15 @@ using System.Web.Mvc;
 
 namespace MySite.Controllers
 {
+    
+
     public class HomeController : Controller
     {
+        MySiteContext context = new MySiteContext();
+
         public ActionResult Index()
         {
+            ViewBag.ListCategory = context.Categories.ToList();
             return View();
         }
 

@@ -39,11 +39,10 @@
         <div class="row">
             <div class="col-md-12">
                 <ul id="head-menu" class="list-inline text-center list-style">
-                    <li>Home</li>
-                    <li>Books</li>
-                    <li>Videos</li>
-                    <li>Photos</li>
-                    <li>Biography</li>
+                    @foreach (var cat in ViewBag.ListCategory)
+                    {
+                        <li id="@cat.Id">@cat.Name</li>
+                    }
                 </ul>
             </div>            
         </div>        
